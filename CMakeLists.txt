@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)	
 project(lab3)			
 set(SOURCE_EXE main.cpp)		
-set(SOURCE_LIB_FIGURES figs.cpp)
+set(SOURCE_LIB_FIGURES figures.cpp)
 set(SOURCE_LIB_VERTEX vertex.cpp)			
 add_library(figures STATIC ${SOURCE_LIB_FIGURES})
 add_library(vertex STATIC ${SOURCE_LIB_VERTEX})	

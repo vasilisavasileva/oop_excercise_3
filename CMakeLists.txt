@@ -1,19 +1,9 @@
-cmake_minimum_required(VERSION 2.8) # Проверка версии CMake.
-# Если версия установленой программы
-# старее указаной, произойдёт аварийный выход.
-
-project(3lab) # Название проекта
-
-set(SOURCE_EXE main.cpp) # Установка переменной со списком исходников для исполняемого файла
-
-#set(SOURCE_LIB figure.h) # Тоже самое, но для библиотеки
-
-#add_library(figure STATIC ${SOURCE_LIB}) # Создание статической библиотеки с именем foo
-
-add_executable(main ${SOURCE_EXE}) # Создает исполняемый файл с именем main
-
-target_link_libraries(main) #figure)
-
-
-
-
+cmake_minimum_required(VERSION 3.0)	
+project(lab3)			
+set(SOURCE_EXE main.cpp)		
+set(SOURCE_LIB_FIGURES figs.cpp)
+set(SOURCE_LIB_VERTEX vertex.cpp)			
+add_library(figures STATIC ${SOURCE_LIB_FIGURES})
+add_library(vertex STATIC ${SOURCE_LIB_VERTEX})	
+add_executable(main ${SOURCE_EXE})	
+target_link_libraries(main figures vertex)

@@ -1,124 +1,118 @@
-#include<iostream>
+#include"figure.h"
+#include"figures.h"
+#include<stdio.h>
 #include<vector>
-#include "figure.h"
-void printMenu(){
-  std::cout << "Ð”Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹Ðµ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹:" << std::endl;
-  std::cout << "0. Ð’Ñ‹Ñ…Ð¾Ð´" << std::endl;
-  std::cout << "1. Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ñ„Ð¸Ð³ÑƒÑ€Ñƒ" << std::endl;
-  std::cout << "2. Ð’Ñ‹Ð·Ð²Ð°Ñ‚ÑŒ Ñ„ÑƒÐ½ÐºÑ†Ð¸ÑŽ Ð´Ð»Ñ Ð²ÑÐµÑ… Ñ„Ð¸Ð³ÑƒÑ€" << std::endl;
-  std::cout << "3. Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ Ñ„Ð¸Ð³ÑƒÑ€Ñƒ Ð¿Ð¾ Ð¸Ð½Ð´ÐµÐºÑÑƒ" << std::endl;
-  std::cout << "4. Ð’Ñ‹Ð²ÐµÑÑ‚Ð¸ ÑÑ‚Ð¾ Ð¼ÐµÐ½ÑŽ" << std::endl;
+
+void printMenu() {
+	std::cout << "Äîñòóïíûå êîìàíäû:" << std::endl;
+	std::cout << "0. Âûõîä" << std::endl;
+	std::cout << "1. Äîáàâèòü ôèãóðó" << std::endl;
+	std::cout << "2. Âûçâàòü ôóíêöèþ äëÿ âñåõ ôèãóð" << std::endl;
+	std::cout << "3. Óäàëèòü ôèãóðó ïî èíäåêñó" << std::endl;
+	std::cout << "4. Âûâåñòè ýòî ìåíþ" << std::endl;
 }
 
-int main(){
-  Figure* s;
-  std::vector<Figure*> v1;
-  double x1, x2, x3, x4, x5, x6, x7, x8, y1, y2, y3, y4, y5, y6, y7, y8;
-  printMenu();
-  while(true){
-    std::cout << "ÐÐ¾Ð¼ÐµÑ€: ";
-    int k;
-    std::cin >> k;
+int main() {
+	setlocale(LC_ALL, "rus");
+	Figure* s;
+	std::vector<Figure*> v1;
+	double x1, x2, x3, x4, x5, x6, x7, x8, y1, y2, y3, y4, y5, y6, y7, y8;
+	printMenu();
+	while (true) {
+		std::cout << "Íîìåð: ";
+		int k;
+		std::cin >> k;
+		std::vector<Figure*> next;
 
-    switch(k){
-    case 0:{
-      for(size_t i = 0; i < v1.size(); i++){
-        delete v1[i];
-      }
-      return 0;
-    }
-    case 1:{
-      std::cout << "1. ÐŸÑÑ‚Ð¸ÑƒÐ³Ð¾Ð»ÑŒÐ½Ð¸Ðº" << std::endl;
-      std::cout << "2. Ð¨ÐµÑÑ‚Ð¸ÑƒÐ³Ð¾Ð»ÑŒÐ½Ð¸Ðº" << std::endl;
-      std::cout << "3. Ð’Ð¾ÑÑŒÐ¼Ð¸ÑƒÐ³Ð¾Ð»ÑŒÐ½Ð¸Ðº" << std::endl;
-      std::cout << "ÐÐ¾Ð¼ÐµÑ€: ";
+		switch (k) {
+		case 0:
+			for (size_t i = 0; i < v1.size(); i++) {
+				delete v1[i];
+			}
+			return 0;
 
-      int a;
-      std::cin >> a;
+		case 1:
+			std::cout << "1. Ïÿòèóãîëüíèê" << std::endl;
+			std::cout << "2. Øåñòèóãîëüíèê" << std::endl;
+			std::cout << "3. Âîñüìèóãîëüíèê" << std::endl;
+			std::cout << "Íîìåð" << std::endl;
+			int a;
+			std::cin >> a;
+			if (a < 1 || a > 3) {
+				std::cout << "Íåâåðíûé íîìåð" << std::endl;
+				break;
+			}
+			switch (a) {
+			case 1:
+				std::cout << "Ââåäèòå êîîðäèíàòû: ";
+				s = new Pentagon(std::cin);
+				break;
+				case 2:
+					std::cout << "Ââåäèòå êîîðäèíàòû: ";
+					s = new Hexagon(std::cin);
+				break;
+				case 3:
+					std::cout << "Ââåäèòå êîîðäèíàòû: ";
+					s = new Octagon(std::cin);
+			}
+			v1.push_back(s);
+		case 2:
+			std::cout << "1. Ïîñ÷èòàòü ïëîùàäü" << std::endl;
+			std::cout << "2. Ïîñ÷èòàòü öåíòð" << std::endl;
+			std::cout << "3. Ðàñïå÷àòàòü êîîðäèíàòû" << std::endl;
+			std::cout << "Íîìåð: ";
 
-      if(a < 1 || a > 3){                                                                                                                                                         std::cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð½Ð¾Ð¼ÐµÑ€" << std::endl;                                                                                                                               break;     
+			int b;
+			std::cin >> b;
+			if (b < 1 || b > 5) {
+				std::cout << "Íåâåðíûé íîìåð" << std::endl;
+				break;
+			}
+
+
+			switch (b) {
+			case 1:
+				std::cout << "Areas:" << std::endl;
+				for (int i = 0; i < v1.size(); i++) {
+					std::cout << (*v1[i]).calculateArea() << std::endl;
+				}
+				break;
+
+			case 2:
+				std::cout << "Centers:" << std::endl;
+				for (int i = 0; i < v1.size(); i++) {
+					std::cout << (*v1[i]).calculateCenter() << std::endl;
+				}
+
+				break;
+
+			case 3:
+				for (int i = 0; i < v1.size(); i++) {
+					(*v1[i]).printVertex(std::cout);
+					std::cout << std::endl;
+				}
+				break;
+			}
+			break;
+
+		case 3:
+			std::cout << "Èíäåêñ: \n";
+			size_t id;
+			std::cin >> id;
+
+			if (id < 0 || id > v1.size() - 1) {
+				std::cout << "Èíäåêñ âûõîäèò çà ãðàíèöû ìàññèâà" << std::endl;
+				break;
+			}
+			delete v1[id];
+			v1.erase(v1.begin() + id);
+			break;
+
+
+		case 4:
+			printMenu();
+			break;
+		}
+	}
 }
 
-      switch(a){                                                                                                                                                                case 1:
-        std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹: ";
-        std::cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3 >> x4 >> y4 >> x5 >> y5;
-        s = new Pentagon(x1, y1, x2, y2, x3, y3, x4, y4, x5, y5);
-        break;                                                                                                                                                                  case 2:
-        std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹: ";
-        std::cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3 >> x4 >> y4 >> x5 >> y5 >> x6 >> y6;
-        s = new Hexagon(x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6);
-        break;                                                                                                                                                                  case 3:
-        std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹: ";
-        std::cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3 >> x4 >> y4 >> x5 >> y5 >> x6 >> y6 >> x7 >> y7 >> x8 >> y8;
-        s = new Octagon(x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6, x7, y7, x8, y8);
-        break;
-      }
-      v1.push_back(s);                                                                                                                                                          break;                                                                                                                                                                  }
-    case 2:{
-      std::cout << "1. ÐŸÐ¾ÑÑ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¿Ð»Ð¾Ñ‰Ð°Ð´ÑŒ" << std::endl;
-      std::cout << "2. ÐŸÐ¾ÑÑ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ñ†ÐµÐ½Ñ‚Ñ€" << std::endl;
-      std::cout << "3. Ð Ð°ÑÐ¿ÐµÑ‡Ð°Ñ‚Ð°Ñ‚ÑŒ Ð¿Ð»Ð¾Ñ‰Ð°Ð´ÑŒ" << std::endl;
-      std::cout << "4. Ð Ð°ÑÐ¿ÐµÑ‡Ð°Ñ‚Ð°Ñ‚ÑŒ Ñ†ÐµÐ½Ñ‚Ñ€" << std::endl;
-      std::cout << "5. Ð Ð°ÑÐ¿ÐµÑ‡Ð°Ñ‚Ð°Ñ‚ÑŒ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹" << std::endl;
-      std::cout << "ÐÐ¾Ð¼ÐµÑ€: ";
-
-      int a;
-      std::cin >> a;
-      if(a < 1 || a > 5){
-        std::cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð½Ð¾Ð¼ÐµÑ€" << std::endl;
-        break;
-      }
-
-      switch(a){
-      case 1:{
-        for(int i = 0; i < v1.size(); i++){
-          (*v1[i]).calculateArea();
-        }              
-        break;                                                                                                                                                                  }
-      case 2:{
-        for(int i = 0; i < v1.size(); i++){                                                                                                                                         (*v1[i]).calculateCenter();
-        }
-        break;
-      }
-      case 3:{
-        for(int i = 0; i < v1.size(); i++){
-          (*v1[i]).printArea();                                                                                                                                                   }
-        break;
-      }
-      case 4:{
-        for(int i = 0; i < v1.size(); i++){
-          (*v1[i]).printCenter();
-        }
-        break;                                                                                                                                                                  }
-      case 5:{
-        for(int i = 0; i < v1.size(); i++){
-          (*v1[i]).printVertex();
-        }
-        break;
-      }
-      }
-      break;
-    }
-    case 3:{                                                                                                                                                                    std::cout << "Ð˜Ð½Ð´ÐµÐºÑ: ";                                                                                                                                                  size_t id;
-      std::cin >> id;
-
-      if(id < 0 || id > v1.size()-1){
-        std::cout << "Ð˜Ð½Ð´ÐµÐºÑ Ð²Ñ‹Ñ…Ð¾Ð´Ð¸Ñ‚ Ð·Ð° Ð³Ñ€Ð°Ð½Ð¸Ñ†Ñ‹ Ð¼Ð°ÑÑÐ¸Ð²Ð°" << std::endl;
-        break;
-      }
-
-      std::vector<Figure*> next;
-      for(int i = 0; i < v1.size(); i++){
-        if(i == id){
-          continue;          
-        }
-        next.push_back(v1[i]);
-      }
-      std::swap(v1, next);
-      break;
-    }
-    case 4:{
-      printMenu();                                                                                                                                                              break;                                                                                                                                                                  }
-    }
-  }
-}
